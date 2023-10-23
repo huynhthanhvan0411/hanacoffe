@@ -1,0 +1,2 @@
+sau khi có model và view thì chúng sẽ được gọi nhau qua controller tại đây ta chia 2 controller là của admin và bên ngoài
+- giống như basemodel, t cũng tạo basecontroller ở đây ta dùng để gọi view và model 
