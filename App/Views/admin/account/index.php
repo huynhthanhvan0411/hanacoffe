@@ -31,36 +31,37 @@
     <tbody>
         <?php $counter = 1;
         foreach ($data as $account) : ?>
-            <tr>
-                <td><?= htmlentities($counter) ?></td>
-                <td><?= htmlentities($account['id']) ?></td>
-                <td><?= htmlentities($account['fname']) . ' ' . htmlentities($account['lname']) ?></td>
-                <td><?= htmlentities($account['email']) ?></td>
-                <td><?= htmlentities($account['phone']) ?></td>
-                <td><?= htmlentities($account['address']) ?></td>
-                <td><?= htmlentities($account['province']) ?></td>
-                <td><span class="badge <?= ($account['role'] == 'customer') ? 'badge-warning' : 'badge-info' ?>"><?= $account['role'] ?></span>
-                </td>
-                <td>
-                    <?php if ($account['status'] == 0) : ?>
-                        <span class="badge badge-danger">Blocked</span>
-                    <?php else : ?>
+        <tr>
+            <td><?= htmlentities($counter) ?></td>
+            <td><?= htmlentities($account['fname']) . ' ' . htmlentities($account['lname']) ?></td>
+            <td><?= htmlentities($account['email']) ?></td>
+            <td><?= htmlentities($account['phone']) ?></td>
+            <td><?= htmlentities($account['address']) ?></td>
+            <td><?= htmlentities($account['province']) ?></td>
+            <td><span
+                    class="badge <?= ($account['role'] == 'customer') ? 'badge-warning' : 'badge-info' ?>"><?= $account['role'] ?></span>
+            </td>
+            <td>
+                <?php if ($account['status'] == 0) : ?>
+                <span class="badge badge-danger">Blocked</span>
+                <?php else : ?>
 
-                        <span class="badge badge-success">Active</span>
-                    <?php endif; ?>
-                </td>
-                <td><?= $account['created_at'] ?></td>
-                <td class="text-right">
+                <span class="badge badge-success">Active</span>
+                <?php endif; ?>
+            </td>
+            <td><?= $account['created_at'] ?></td>
+            <td class="text-right">
 
-                    <?php if ($account['role'] == 'customer') : ?>
-                        <a href="./?module=admin&controller=account&action=edit&id=<?= $account['id'] ?>" class="btn btn-sm btn-success">
-                            <i class="fas fa-edit"></i>
-                        </a>
+                <?php if ($account['role'] == 'customer') : ?>
+                <a href="./?module=admin&controller=account&action=edit&id=<?= $account['id'] ?>"
+                    class="btn btn-sm btn-success">
+                    <i class="fas fa-edit"></i>
+                </a>
 
-                    <?php endif; ?>
-                </td>
+                <?php endif; ?>
+            </td>
 
-            </tr>
+        </tr>
         <?php $counter++;
         endforeach; ?>
     </tbody>

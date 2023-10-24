@@ -30,7 +30,6 @@
         foreach ($data as $model) : ?>
         <tr>
             <td><?= $counterno ?></td>
-            <td><?= $model['id'] ?></td>
             <td><?= $model['name'] ?></td>
             <td><?= $model['site'] ?></td>
             <td>

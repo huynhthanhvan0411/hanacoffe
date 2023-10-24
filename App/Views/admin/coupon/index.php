@@ -42,7 +42,6 @@
         foreach ($data as $model) : ?>
         <tr>
             <td><?= $counter ?></td>
-            <td><?= $model['id'] ?></td>
             <td>
                 <span class="badge badge-warning"> <?= $model['coupon_value'] * 100 ?>%</span>
             </td>

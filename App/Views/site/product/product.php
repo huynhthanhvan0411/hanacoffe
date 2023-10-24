@@ -71,23 +71,7 @@
 
                     <aside class="single_sidebar_widget popular_post_widget top_product_widget">
                         <h3 class="widget_title">Top product</h3>
-                        <?php foreach ($top_products as $pro) : ?>
-                        <div class="media post_item">
-                            <img src="./public/uploads/<?= $pro['image'] ?>" alt="post"
-                                style="border-radius: 100%; border: 1px solid #f0e5d4">
-                            <div class="media-body">
-                                <a href="./?controller=product&action=productDetail&id=<?= $pro['id'] ?>">
-                                    <h3 class="top-link"><?= $pro['name'] ?></h3>
-                                </a>
-                                <p class="discount-price">
-                                    $<?= number_format($pro['sale_price'] > 0 ? $pro['sale_price'] : $pro['price'], 2, '.', '') ?>
-                                </p>
-                                <?php if ($pro['sale_price'] > 0) : ?>
-                                <p class="old-price">$<?= number_format($pro['price'], 2, '.', '') ?></p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
+
                     </aside>
                     <aside class="single_sidebar_widget tag_cloud_widget">
                         <h4 class="widget_title">Tag Clouds</h4>

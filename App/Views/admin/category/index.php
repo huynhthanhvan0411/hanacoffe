@@ -49,7 +49,6 @@ if (!empty($message['success-delete'])) :
         ?>
         <tr>
             <td><?= $counter ?></td>
-            <td><?= $cat['id'] ?></td>
             <td><?= $cat['name'] ?></td>
             <td><?= $cat['count'] ?></td>
             <td>

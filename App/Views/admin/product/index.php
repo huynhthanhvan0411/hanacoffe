@@ -44,7 +44,6 @@
         foreach ($data as $model) : ?>
         <tr>
             <td><?= $counter ?></td>
-            <td><?= $model['id'] ?></td>
             <td><?= $model['name'] ?></td>
             <td><?= $model['category_name'] ?></td>
             <td> $<?= number_format($model['price'], 2, '.', '') ?> <span

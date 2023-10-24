@@ -36,10 +36,6 @@
 
             </td>
             <td>
-                <?= $order['id'] ?>
-
-            </td>
-            <td>
                 <?= $order['fname'] . ' ' . $order['lname'] ?>
 
             </td>
