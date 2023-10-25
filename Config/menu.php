@@ -24,7 +24,7 @@ return $menus = [
     [
         'label' => 'Product Manager',
         'route' => './?module=admin&controller=product',
-        'icon' => 'fa-bread-slice',
+        'icon' => 'fa fa-coffee',
         'items' => [
             [
                 'label' => 'All Product',
