@@ -1,0 +1,569 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 24, 2023 at 08:06 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hana`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `remember_token` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `province` varchar(50) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `role` varchar(50) DEFAULT 'customer',
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là ok, 0 b? khóa',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `fname`, `lname`, `email`, `phone`, `password`, `remember_token`, `province`, `address`, `role`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Huynh Thanh ', 'Van', 'admin2@example.com', '0946532675', '25d55ad283aa400af464c76d713c07ad', '', 'Thanh Hóa', 'Phung Khac Khoan, Bim Son', 'admin', 1, '2021-04-17 17:00:00', '2023-10-23 15:20:22'),
+(2, 'Phuc', 'Nguyen', 'phucnguyen1@example.com', '0946582665', '25f9e794323b453885f5181f1b624d0b', '', 'Hà Nội', '121 Cầu Giấy', 'customer', 0, '2021-04-16 17:00:00', '2023-10-22 17:00:00'),
+(3, 'Pham', 'Tuan', 'tuan@exampl.com', '0394765967', '25f9e794323b453885f5181f1b624d0b', NULL, 'Thái Bình', 'Biển Aquaman', 'customer', 1, '2023-10-23 15:24:07', '2023-10-23 15:24:07'),
+(4, 'Thanh', 'Hà', 'ha@example.com', '0394765555', '25f9e794323b453885f5181f1b624d0b', '', 'Bắc Kạn', 'bac ning', 'customer', 1, '2023-10-23 15:25:00', '2023-10-24 15:39:49'),
+(5, 'Phương', 'Hoa', 'hoa@gmail.com', '0385828465', '25f9e794323b453885f5181f1b624d0b', '', 'Bến Tre', 'miền tây sông nước', 'customer', 1, '2023-10-23 15:25:48', '2023-10-24 15:46:09'),
+(6, 'Thị', 'Quyên', 'quyen@gamil.com', '0475739465', '25f9e794323b453885f5181f1b624d0b', '', 'Bà Rịa–Vũng Tàu', 'biển', 'customer', 1, '2023-10-23 15:28:03', '2023-10-24 15:41:49'),
+(7, 'Đức ', 'Mạnh', 'manh@example.com', '0394773579', '25f9e794323b453885f5181f1b624d0b', '', 'Sơn La', 'phù yên tà xua', 'customer', 1, '2023-10-23 15:28:46', '2023-10-23 16:12:24'),
+(8, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', '25f9e794323b453885f5181f1b624d0b', '', 'Quảng Nam', 'quảng hồ', 'customer', 1, '2023-10-23 15:38:30', '2023-10-23 15:59:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `site` varchar(255) DEFAULT 'home',
+  `description` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là hiện tại, 0 ẩn',
+  `priority` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id`, `name`, `image`, `site`, `description`, `status`, `priority`, `created_at`, `updated_at`) VALUES
+(2, 'home banner-2', 'BN8.jpg', 'Home', 'home cup', 1, 5, '2023-10-23 14:45:57', '2023-10-23 14:45:57'),
+(3, 'cart banner', 'index2.jpg', 'Cart', 'vn', 1, 1, '2023-10-23 14:46:39', '2023-10-23 14:46:39'),
+(4, 'about banner', 'bn9.jpg', 'About', 'ghghf', 1, 1, '2023-10-23 14:47:22', '2023-10-23 14:47:22'),
+(5, 'product banner-1', 'bn1.jpg', 'Product', 'afddfg', 1, 1, '2023-10-23 14:48:16', '2023-10-23 14:48:16'),
+(6, 'product detail banner -1', 'index4.jpg', 'Product Detail', 'gd', 1, 2, '2023-10-23 14:48:51', '2023-10-23 14:48:51'),
+(7, 'contacttt', 'carousel1.jpg', 'Blog', 'f', 0, 3, '2023-10-23 14:49:19', '2023-10-22 17:00:00'),
+(8, 'checkout banner 1', 'bn3.jpg', 'Checkout', 'r', 1, 2, '2023-10-23 14:50:02', '2023-10-23 14:50:02'),
+(9, 'contact banner', 'bn3.jpg', 'Contact', 'eret', 1, 1, '2023-10-23 14:52:40', '2023-10-23 14:52:40'),
+(10, 'prodcut detal banner', 'index2.jpg', 'Product Detail', 'h', 1, 1, '2023-10-24 15:43:30', '2023-10-24 15:43:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `summary` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là hiện tại, 0 là ẩn',
+  `account_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là hiện tại, 0 là ẩn',
+  `priority` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `status`, `priority`, `created_at`, `updated_at`) VALUES
+(1, 'Cafe', 1, 1, '2023-10-23 11:52:11', '2023-10-23 11:52:11'),
+(2, 'Tea milk', 1, 1, '2023-10-23 11:52:21', '2023-10-22 17:00:00'),
+(3, 'Ice', 1, 2, '2023-10-23 11:52:32', '2023-10-23 11:52:32'),
+(4, 'Cake', 1, 5, '2023-10-23 11:52:45', '2023-10-23 11:52:45'),
+(5, 'Mochi', 1, 9, '2023-10-23 11:52:58', '2023-10-23 11:52:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `content` text DEFAULT NULL,
+  `blog_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `message` text DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `message`, `name`, `email`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 'I would like to book in avanced your catering service', 'Minh Khoa', 'minhkhoa@example.com', '0123456598', '2021-05-24 17:00:00', '2021-05-24 17:00:00'),
+(2, 'I want meet manager, this is my phone 08375834875', 'Thanh Hà', 'ha@example.com', '0394765555', '2023-10-24 16:02:16', '2023-10-24 16:02:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupon`
+--
+
+CREATE TABLE `coupon` (
+  `id` varchar(100) NOT NULL,
+  `coupon_value` float(9,3) NOT NULL DEFAULT 0.000,
+  `used_times` mediumint(8) UNSIGNED NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 is active, 0 is expired',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `coupon`
+--
+
+INSERT INTO `coupon` (`id`, `coupon_value`, `used_times`, `status`, `created_at`, `updated_at`) VALUES
+('HANALOVE', 0.100, 6, 1, '2023-10-23 12:22:14', '2023-10-23 12:22:14'),
+('VANDANGYEU', 0.200, 11, 1, '2023-10-23 12:22:41', '2023-10-23 12:22:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(100) DEFAULT NULL,
+  `lname` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `province` varchar(100) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `note` text DEFAULT NULL,
+  `delivery` varchar(100) NOT NULL,
+  `payment` varchar(100) NOT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là pending, 0 delivered,2 la delivering, 3 la canceled',
+  `account_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `coupon` float(9,3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `fname`, `lname`, `email`, `phone`, `province`, `address`, `note`, `delivery`, `payment`, `status`, `account_id`, `created_at`, `updated_at`, `coupon`) VALUES
+(1, 'Huynh Thanh', 'Van', 'admin2@example.com', '0946532665', 'Thanh Hóa', 'Phung Khac Khoan, Bim Son', NULL, 'Giaohangtietkiem', 'Cash on delivery', 0, 1, '2021-04-17 17:00:00', '2023-10-23 17:00:00', NULL),
+(2, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', 'Hà Nội', 'quảng hồ', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 8, '2023-10-24 15:12:08', '2023-10-23 17:00:00', 0.000),
+(3, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', 'Hà Nội', 'quảng hồ', '', 'Giaohangnhanh', 'Mastercard', 0, 8, '2023-10-24 15:12:35', '2023-10-23 17:00:00', 0.000),
+(4, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', 'Hà Nội', 'quảng hồ', '', 'Giaohangnhanh', 'Internet Banking', 0, 8, '2023-10-24 15:27:45', '2023-10-23 17:00:00', 0.000),
+(5, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', 'Hà Nội', 'quảng hồ', '', 'Giaohangtietkiem', 'Visa', 0, 8, '2023-10-24 15:28:15', '2023-10-23 17:00:00', 0.000),
+(6, 'Thu', 'Thủy', 'thuy@example.com', '0488274485', 'Hà Nội', 'quảng hồ', 'hot 80 %', 'Giaohangtietkiem', 'Visa', 0, 8, '2023-10-24 15:29:14', '2023-10-23 17:00:00', 0.000),
+(7, 'Thanh', 'Hà', 'ha@example.com', '0394765555', 'Hà Nội', 'bac ning', '', 'NowShip', 'Internet Banking', 0, 4, '2023-10-24 15:35:23', '2023-10-23 17:00:00', 0.000),
+(8, 'Thanh', 'Hà', 'ha@example.com', '0394765555', 'Hà Nội', 'bac ning', '', 'J&T Express', 'Visa', 0, 4, '2023-10-24 15:39:15', '2023-10-23 17:00:00', 0.000),
+(9, 'Thanh', 'Hà', 'ha@example.com', '0394765555', 'Hà Nội', 'bac ning', '', 'Giaohangnhanh', 'Cash on delivery', 0, 4, '2023-10-24 15:39:36', '2023-10-23 17:00:00', 0.000),
+(10, 'Đức ', 'Mạnh', 'manh@example.com', '0394773579', 'Hà Nội', 'phù yên tà xua', '', 'Giaohangnhanh', 'Visa', 0, 7, '2023-10-24 15:40:20', '2023-10-23 17:00:00', 0.000),
+(11, 'Đức ', 'Mạnh', 'manh@example.com', '0394773579', 'Hà Nội', 'phù yên tà xua', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 7, '2023-10-24 15:40:32', '2023-10-23 17:00:00', 0.000),
+(12, 'Thị', 'Quyên', 'quyen@gamil.com', '0475739465', 'Hà Nội', 'biển', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 6, '2023-10-24 15:41:09', '2023-10-23 17:00:00', 0.000),
+(13, 'Thị', 'Quyên', 'quyen@gamil.com', '0475739465', 'Hà Nội', 'biển', '', 'Giaohangtietkiem', 'Cash on delivery', 3, 6, '2023-10-24 15:41:21', '2023-10-23 17:00:00', 0.000),
+(14, 'Thị', 'Quyên', 'quyen@gamil.com', '0475739465', 'Hà Nội', 'biển', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 6, '2023-10-24 15:41:40', '2023-10-23 17:00:00', 0.000),
+(15, 'Huynh Thanh ', 'Van', 'admin2@example.com', '0946532675', 'Hà Nội', 'Phung Khac Khoan, Bim Son', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 1, '2023-10-24 15:43:45', '2023-10-23 17:00:00', 0.000),
+(16, 'Phương', 'Hoa', 'hoa@gmail.com', '0385828465', 'Hà Nội', 'miền tây sông nước', '', 'NowShip', 'Cash on delivery', 0, 5, '2023-10-24 15:44:47', '2023-10-23 17:00:00', 0.000),
+(17, 'Phương', 'Hoa', 'hoa@gmail.com', '0385828465', 'Hà Nội', 'miền tây sông nước', '', 'Giaohangtietkiem', 'Visa', 2, 5, '2023-10-24 15:44:58', '2023-10-23 17:00:00', 0.000),
+(18, 'Phương', 'Hoa', 'hoa@gmail.com', '0385828465', 'Hà Nội', 'miền tây sông nước', '', 'Giaohangtietkiem', 'Cash on delivery', 0, 5, '2023-10-24 15:45:23', '2023-10-23 17:00:00', 0.000),
+(19, 'Phương', 'Hoa', 'hoa@gmail.com', '0385828465', 'Hà Nội', 'miền tây sông nước', '', 'Giaohangtietkiem', 'Mastercard', 0, 5, '2023-10-24 15:46:01', '2023-10-23 17:00:00', 0.000),
+(20, 'Đức ', 'Mạnh', 'manh@example.com', '0394773579', 'Hà Nội', 'phù yên tà xua', '', 'Giaohangnhanh', 'Mastercard', 1, 7, '2023-10-24 17:34:50', '2023-10-24 17:34:50', 0.000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUES
+(1, 8, 1, 6),
+(1, 29, 1, 55000),
+(1, 29, 1, 55000),
+(1, 29, 1, 55000),
+(1, 29, 1, 55000),
+(1, 30, 1, 45000),
+(1, 30, 1, 45000),
+(1, 30, 1, 45000),
+(1, 25, 1, 200000),
+(1, 29, 1, 55000),
+(1, 30, 1, 45000),
+(1, 29, 1, 55000),
+(1, 9, 1, 25000),
+(1, 27, 1, 55000),
+(1, 31, 1, 55000),
+(1, 27, 1, 55000),
+(2, 29, 1, 55000),
+(2, 28, 1, 55000),
+(3, 27, 1, 55000),
+(3, 31, 1, 55000),
+(4, 8, 1, 45000),
+(4, 3, 1, 55000),
+(5, 13, 1, 40000),
+(5, 9, 1, 25000),
+(6, 25, 1, 200000),
+(7, 19, 1, 45000),
+(7, 17, 1, 60000),
+(8, 21, 2, 100000),
+(9, 20, 4, 220000),
+(10, 25, 4, 800000),
+(11, 18, 1, 70000),
+(12, 29, 1, 55000),
+(12, 31, 3, 165000),
+(13, 9, 2, 50000),
+(14, 3, 1, 55000),
+(15, 30, 1, 45000),
+(16, 24, 2, 100000),
+(17, 30, 1, 45000),
+(18, 9, 4, 100000),
+(19, 1, 19, 1045000),
+(20, 27, 1, 55000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `price` float(9,3) NOT NULL,
+  `sale_price` float(9,3) DEFAULT 0.000,
+  `description` text DEFAULT NULL,
+  `origin` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `status` tinyint(1) DEFAULT 1 COMMENT '1 là hiện tại, 0 ẩn',
+  `category_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `image`, `price`, `sale_price`, `description`, `origin`, `quantity`, `status`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 'Americano Ice', 'pcf3.jpg', 70000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 20, 1, 1, '2023-10-23 11:54:15', '2023-10-23 11:54:15'),
+(2, 'Latte lovey ', 'pcf9.jpg', 50000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 23, 1, 1, '2023-10-23 11:54:44', '2023-10-23 11:54:44'),
+(3, 'Cafe no sugar', 'pcf10.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 12, 1, 1, '2023-10-23 11:55:15', '2023-10-23 11:55:15'),
+(4, 'cafe cheesy ', 'pcf11.jpg', 56000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 34, 1, 1, '2023-10-23 11:55:44', '2023-10-23 11:55:44'),
+(5, 'expresso hot', 'pcf12.jpg', 67000.000, 65000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 23, 1, 1, '2023-10-23 11:56:11', '2023-10-23 11:56:11'),
+(6, 'milk cafe', 'pcf8.jpg', 80000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 45, 1, 1, '2023-10-23 11:56:43', '2023-10-23 11:56:43'),
+(7, 'hana hottin', 'pcf5.jpg', 70000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 23, 1, 1, '2023-10-23 11:57:15', '2023-10-23 11:57:15'),
+(8, 'faint silver', 'pcf7.jpg', 80000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 34, 1, 1, '2023-10-23 11:58:14', '2023-10-23 11:58:14'),
+(9, 'Trà đào cam sả', 'pt1.jpg', 45000.000, 25000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 23, 1, 2, '2023-10-23 11:59:12', '2023-10-23 11:59:12'),
+(10, 'Trà đào nóng', 'pt2.jpg', 70000.000, 65000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 23, 1, 2, '2023-10-23 11:59:37', '2023-10-23 11:59:37'),
+(11, 'Trà sen phô mai', 'pt3.jpg', 70000.000, 65000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 45, 1, 2, '2023-10-23 12:00:11', '2023-10-23 12:00:11'),
+(12, 'Trà sen nóng', 'pt4.jpg', 70000.000, 65000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 56, 1, 2, '2023-10-23 12:00:44', '2023-10-23 12:00:44'),
+(13, 'Phúc bồn tử cheese', 'pt5.jpg', 70000.000, 40000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 34, 1, 2, '2023-10-23 12:01:54', '2023-10-23 12:01:54'),
+(14, 'Hồng trà trân châu trắng ', 'pt6.jpg', 70000.000, 65000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 34, 1, 2, '2023-10-23 12:07:38', '2023-10-23 12:07:38'),
+(16, 'Frosty caramen', 'cice2.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 34, 1, 3, '2023-10-23 12:09:45', '2023-10-23 12:09:45'),
+(17, 'Frosty cheese', 'ice1.jpg', 70000.000, 60000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 34, 1, 3, '2023-10-23 12:10:19', '2023-10-23 12:10:19'),
+(18, 'Frosty strawberry ', 'ice3.jpg', 80000.000, 70000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 20, 1, 3, '2023-10-23 12:11:00', '2023-10-23 12:11:00'),
+(19, 'Frosty chOcOlate ', 'ice4.jpg', 60000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 23, 1, 3, '2023-10-23 12:11:31', '2023-10-22 17:00:00'),
+(20, 'Hana Pate', 'pck1.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 23, 1, 4, '2023-10-23 12:12:17', '2023-10-23 12:12:17'),
+(21, 'Croosaint dăm bông', 'pck2.jpg', 60000.000, 50000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 23, 1, 4, '2023-10-23 12:12:44', '2023-10-23 12:12:44'),
+(22, 'Chà là dăm bông', 'pck3.jpg', 50000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'vn', 56, 1, 4, '2023-10-23 12:13:10', '2023-10-23 12:13:10'),
+(23, 'tiramisu velvet', 'pck4.jpg', 50000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 34, 1, 4, '2023-10-23 12:13:40', '2023-10-23 12:13:40'),
+(24, 'tiramsu caramen', 'pck5.jpg', 60000.000, 50000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 35, 1, 4, '2023-10-23 12:14:05', '2023-10-23 12:14:05'),
+(25, 'bear cake', 'pck6.jpg', 230000.000, 200000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 4, 1, 4, '2023-10-23 12:14:29', '2023-10-22 17:00:00'),
+(26, 'Mochi dâu', 'mc1.jpg', 60000.000, 50000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 23, 1, 5, '2023-10-23 12:15:05', '2023-10-23 12:15:05'),
+(27, 'Mochi việt quất ', 'mc2.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 23, 1, 5, '2023-10-23 12:16:16', '2023-10-23 12:16:16'),
+(28, 'Mochi xoài', 'mc3.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 21, 1, 5, '2023-10-23 12:16:41', '2023-10-23 12:16:41'),
+(29, 'Mochi sữa dừa', 'mc4.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'usa', 34, 1, 5, '2023-10-23 12:17:14', '2023-10-23 12:17:14'),
+(30, 'Mochi cafe', 'mc5.jpg', 60000.000, 45000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 23, 1, 5, '2023-10-23 12:17:53', '2023-10-23 12:17:53'),
+(31, 'Mochi matcha', 'mc6.jpg', 60000.000, 55000.000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam omnis porro mollitia minima, beatae doloribus tenetur aut et expedita ut.', 'china', 34, 1, 5, '2023-10-23 12:18:41', '2023-10-23 12:18:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `rating` tinyint(4) DEFAULT 5,
+  `content` text DEFAULT NULL,
+  `product_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id`, `rating`, `content`, `product_id`, `account_id`, `created_at`, `updated_at`) VALUES
+(1, 5, 'So yummy I love it, I am fan', 7, 8, '2023-10-24 16:00:46', '2023-10-24 16:00:46'),
+(2, 4, 'So cold  so fresh I like it', 27, 8, '2023-10-24 16:01:15', '2023-10-24 16:01:15');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `phone` (`phone`);
+
+--
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_id` (`account_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `blog_id` (`blog_id`),
+  ADD KEY `account_id` (`account_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_id` (`account_id`);
+
+--
+-- Indexes for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `review_ibfk_2` (`account_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
+
+--
+-- Constraints for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
+  ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
